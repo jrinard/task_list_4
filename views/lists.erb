@@ -1,0 +1,33 @@
+<h1>Your Current Lists</h1>
+
+<a href="/">Home</a><br>
+<a href="/lists">View All Lists</a><br>
+
+
+<hr>
+<form action="/lists" method="post">
+  <input id = 'name' name="name" type="text" placeholder="List Name" class="form-control">
+  <br>
+  <button type="submit" class="btn btn-primary">Add List</button>
+</form>
+
+
+
+
+<hr>
+<% if @lists.any?() %>
+  <h3>Here are your lists:</h3>
+
+  <ul>
+    <% @lists.each() do |list| %>
+      <li><a href="/lists/<%= list.id()%>"><%= list.name() %></a> </li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+    <p>There are no lists yet!</p>
+
+<% end %>
+
+<hr>

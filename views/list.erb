@@ -1,0 +1,42 @@
+<h1>To Do List - list.erb</h1>
+
+
+<a href="/">Home</a><br>
+<a href="/lists">View All Lists</a><br>
+
+<hr>
+
+<h3>Add a Task to <%= @list.name() %> </h3>
+
+<form action="/tasks" method="post">
+  <input id="list_id" name="list_id" type="hidden" value="<%= @list.id() %>">
+
+  <input id="description" name="description" type="text" class="form-control" placeholder="New Task">
+  <br>
+  <button type="submit" class="btn btn-primary">Add task</button>
+</form>
+
+<hr>
+
+<h1><%= @list.name() %></h1>
+
+
+<a href="/lists/<%= @list.id() %>/edit">Edit <%= @list.name() %> List</a>
+
+
+<% if @list.tasks().any?() %>
+
+  <ul>
+    <% @list.tasks().each() do |task| %>
+      <li><%= task.description() %> </li>
+    <% end %>
+  </ul>
+
+  <% else %>
+    <p>There are no tasks on this list!</p>
+  <% end %>
+<!-- 
+  <form action="/clear" method="post" class="pull-right">
+
+    <button type="submit" class="btn btn-danger">Delete All Tasks</button>
+  </form> -->
